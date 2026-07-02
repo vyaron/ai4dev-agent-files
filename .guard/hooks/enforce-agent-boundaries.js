@@ -1,0 +1,50 @@
+#!/usr/bin/env node
+// PreToolUse guardrail: enforces the "Allowed paths" sections already written
+// in .agents/frontend/AGENT.md and .agents/backend/AGENT.md. Those files only
+// *ask* the agent to stay in its lane ("Forbidden: backend/**") - nothing
+// stopped it from ignoring that under bypassPermissions. This hook reads the
+// AGENT_ROLE env var that dev-loop.js now sets when it spawns each
+// sub-agent (see runAgent -> spawnClaude in dev-loop.js) and blocks any
+// Edit/Write outside that role's allowed paths.
+//
+// Orchestrator runs (no AGENT_ROLE set) and interactive sessions are
+// left unrestricted by this hook on purpose.
+
+const ALLOWED_WRITE_PREFIXES = {
+  frontend: ['frontend/', 'docs/api-contract.yaml', 'docs/frontend-agent-report.md'],
+  backend: ['backend/', 'docs/backend-agent-report.md'],
+  qa: ['docs/qa-report.md']
+}
+
+let input = ''
+process.stdin.on('data', chunk => { input += chunk })
+process.stdin.on('end', () => {
+  const role = process.env.AGENT_ROLE
+  const allowedPrefixes = role && ALLOWED_WRITE_PREFIXES[role]
+  if (!allowedPrefixes) {
+    process.exit(0) // no role set (orchestrator / interactive) - not this hook's job
+  }
+
+  let payload
+  try {
+    payload = JSON.parse(input)
+  } catch {
+    process.exit(0)
+  }
+
+  const filePath = (payload?.tool_input?.file_path ?? '').replace(/\\/g, '/').replace(/^\.\//, '')
+  if (!filePath) {
+    process.exit(0)
+  }
+
+  const isAllowed = allowedPrefixes.some(prefix => filePath.startsWith(prefix))
+  if (!isAllowed) {
+    console.error(
+      `[guardrail] "${role}" agent tried to write outside its allowed paths: "${filePath}". ` +
+      `Allowed: ${allowedPrefixes.join(', ')}`
+    )
+    process.exit(2)
+  }
+
+  process.exit(0)
+})
