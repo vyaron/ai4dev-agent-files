@@ -1,14 +1,13 @@
 # Prioritized Backlog
 
-
 Current queue:
 
-- [ ] Messages search - full stack feature
+- [ ] Some task
 
 
 
 
-## DONE
+## DONE (Examples)
 
 
 - [V] converstaion top bar (layer name: WhatsApp Chat) | figma:https://www.figma.com/design/tHm72cbGTItMqApwFQ7pkZ/WhatsAppUI?node-id=0-8257&m=dev
