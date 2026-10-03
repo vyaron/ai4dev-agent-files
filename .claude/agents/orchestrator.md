@@ -58,7 +58,7 @@ Plan rules:
   data layer until a task explicitly opts in.
 - `Open Questions` must contain real questions, each with a recommended answer.
 
-## Job B — Create Linear tickets
+## Job B — Create tickets
 
 You are given the team id, the task, and the approved plan.
 

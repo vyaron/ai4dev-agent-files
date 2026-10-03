@@ -42,7 +42,6 @@ Applies to unit, integration, and end-to-end tests.
 - Update or delete obsolete tests when behavior changes intentionally.
 
 ## This repository
-Tooling is already installed and configured — do not reinstall or reconfigure it.
 
 | Suite | Location | Runner |
 |---|---|---|

@@ -7,14 +7,13 @@
 - This document should describe the primary runtime components and how they interact.
 
 ## Recommended Sections
-- `Context`
-	- What problem the system solves and key constraints.
+
 - `Primary Components`
 	- Main services/modules and their responsibilities.
 - `Data Flow`
 	- Request and event flow between components.
-- `Auth and Org Boundaries`
-	- Where authentication and organization scoping are enforced.
+- `Auth`
+	- Where authentication is enforced.
 - `External Dependencies`
 	- Third-party services and integration points.
 - `Operational Concerns`
@@ -22,6 +21,4 @@
 - `Change Log`
 	- Date-stamped notes for major architecture updates.
 
-## Update Triggers
-- Update this file when API routes, auth boundaries, org boundaries, or major component ownership changes.
 

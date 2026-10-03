@@ -12,7 +12,7 @@ This repository holds the source-of-truth instructions, product docs, planning a
 
 ## Current project focus
 
-- Product: Instagram-style social app MVP
+- Product: TBD
 - Scope: Frontend-first, mock-data-driven user journeys
 - Delivery model: Orchestrator -> Frontend/Backend (when needed) -> QA
 
@@ -57,28 +57,3 @@ See the product definition in .doc/product-definition.md.
 - Generated, disposable artifacts:
   - .orchestrate/* (except .orchestrate/README.md, which documents the folder)
 
-## Conventions
-
-- Use singular domain naming (org, geo, lat, lng) as defined in .claude/rules/naming.md.
-- Do implementation work on dedicated branches (feat/*, fix/*, chore/*, docs/*).
-- Do not commit or expose secrets.
-- For JavaScript and TypeScript, no trailing semicolons.
-
-## Suggested local workflow
-
-1. Open this folder in VS Code.
-2. Read AGENTS.md first.
-3. Review .doc/product-definition.md and .plan/000-backlog.md.
-4. Execute your agent workflow.
-5. Inspect .orchestrate outputs and update plans/docs when assumptions change.
-
-## Status snapshot
-
-- Repository default branch: main
-- Architecture doc: scaffolded and ready for deeper detail
-- Product definition: present with acceptance criteria and success metrics
-- Backlog: active, with profile and exploration tasks tracked
-
-## License
-
-No license file is currently defined in this repository.
